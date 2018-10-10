@@ -1,9 +1,9 @@
 <!-- BEGIN : home.html.php -->
 
-<form action="index.php" method="post">
+<form action="index.php" method="get">
     <div>
         <label for="num">Nombre à afficher :</label>
-        <input type="number" id="num" name="num">
+        <input type="number" id="num" name="num" value="<?= $limit ?>">
     </div>    
 </form>
 
@@ -22,10 +22,9 @@
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
-        <?php
-            
+        <?php            
             for($i=1;$i<=$number;$i++){
-                echo  '<li><a href="index.php?p='.$i.'">'.$i.'</a></li>';             
+                echo  '<li><a href="index.php?p='.$i.'&num='.$limit.'">'.$i.'</a></li>';             
             }
         ?>        
         <li>

@@ -23,8 +23,8 @@ class HomeController extends LayoutController
     public function viewAction()
     {
         $limit=3;
-        if(isset($_POST['num'])){
-           $limit=$_POST['num']; 
+        if(isset($_GET['num'])){
+           $limit=$_GET['num']; 
         }
         if(isset($_GET['p'])&&$_GET['p']>1){
             $offset=($_GET['p']-1)*$limit; 
@@ -33,7 +33,7 @@ class HomeController extends LayoutController
             $offset=0;
         }       
         $params = [ 'articles' => ArticleManager::getAll($offset,$limit),
-        'number'=> ceil(sizeof(ArticleManager::getAll())/$limit)];
+        'number'=> ceil(sizeof(ArticleManager::getAll())/$limit),'limit'=>$limit];
 
         $this->render('home', $params);
     }
