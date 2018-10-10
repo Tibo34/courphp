@@ -17,14 +17,20 @@ else{
     $last=3;
 }
 ?>
-
-<?php for ($i=$p;$i<$last;$i++) : ?>
+<form action="index.php" method="post">
     <div>
-        <h2><?= $articles[$i]->getTitle() ?></h2>
-        <p><?= $articles[$i]->getHead() ?></p>
-        <p><a class="btn btn-default" href="/index.php?page=article&id=<?= $articles[$i]->getId() ?>" role="button">View details &raquo;</a></p>
+        <label for="num">Nom :</label>
+        <input type="number" id="num" name="num">
+    </div>    
+</form>
+
+<?php foreach($articles as $article): ?>
+    <div>
+        <h2><?= $article->getTitle() ?></h2>
+        <p><?= $article->getHead() ?></p>
+        <p><a class="btn btn-default" href="/index.php?page=article&id=<?= $article->getId() ?>" role="button">View details &raquo;</a></p>
     </div>
-<?php endfor; ?>
+<?php endforeach; ?>
 
 <nav aria-label="Page navigation">
     <ul class="pagination">
@@ -34,10 +40,9 @@ else{
             </a>
         </li>
         <?php
-            $j=1;
-            for($i=0;$i<$nbpage;$i++){
-                echo  '<li><a href="index.php?p='.$i.'">'.$j.'</a></li>';
-                $j++;
+            
+            for($i=1;$i<=$number;$i++){
+                echo  '<li><a href="index.php?p='.$i.'">'.$i.'</a></li>';             
             }
         ?>        
         <li>

@@ -57,12 +57,19 @@ abstract class ArticleManager extends DbManager implements ItemInterface
      * @throws \Exception
      */
     public static function getAll($offset = null, $limit = null)
-    {
+    {   
+        //requete SQL
+     
+        $request="SELECT id, title, image, head, content, create_date FROM articles"; 
+       
+        if(isset($offset)&&isset($limit)){
+            $request.=" WHERE id>{$offset} ";
+            $request.=" LIMIT {$limit} "; 
+        }      
+                     
+      
         // Select list of article in database
-        $stmt = self::getDb()->prepare("
-          SELECT id, title, image, head, content, create_date
-          FROM articles;
-        ");
+        $stmt = self::getDb()->prepare($request);
         $stmt->execute();
 
         // Instantiates a collection of article
