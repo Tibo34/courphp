@@ -3,4 +3,4 @@ database:
     charset:  utf8
     name:     tp_iut_blog
     user:     root
-    password: ****
+    password: 123
