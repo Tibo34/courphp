@@ -1,25 +1,8 @@
 <!-- BEGIN : home.html.php -->
-<?php
 
-//var_dump(sizeof($articles));
-$nbpage=sizeof($articles)/3;
-if(isset($_GET['p'])){
-    var_dump($_GET['p']);
-    $p=$_GET['p']*3;
-    $last=$p+3;
-    if($last>sizeof($articles)){
-        $last=sizeof($articles);
-    }
-    //var_dump($p." ".$last);
-}
-else{
-    $p=0;
-    $last=3;
-}
-?>
 <form action="index.php" method="post">
     <div>
-        <label for="num">Nom :</label>
+        <label for="num">Nombre à afficher :</label>
         <input type="number" id="num" name="num">
     </div>    
 </form>

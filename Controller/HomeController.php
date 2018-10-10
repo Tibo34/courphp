@@ -23,13 +23,17 @@ class HomeController extends LayoutController
     public function viewAction()
     {
         $limit=3;
+        if(isset($_POST['num'])){
+           $limit=$_POST['num']; 
+        }
         if(isset($_GET['p'])&&$_GET['p']>1){
             $offset=($_GET['p']-1)*$limit; 
         }
         else{
             $offset=0;
         }       
-        $params = [ 'articles' => ArticleManager::getAll($offset,$limit),'number'=> sizeof(ArticleManager::getAll())/$limit];
+        $params = [ 'articles' => ArticleManager::getAll($offset,$limit),
+        'number'=> ceil(sizeof(ArticleManager::getAll())/$limit)];
 
         $this->render('home', $params);
     }
