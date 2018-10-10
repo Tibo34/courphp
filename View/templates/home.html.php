@@ -3,11 +3,11 @@
 <form action="index.php" method="get">
     <div>
         <label for="num">Nombre à afficher :</label>
-        <input type="number" id="num" name="num" value="<?= $limit ?>">
+        <input type="number" id="num" name="num" value="<?= $articles['limit'] ?>">
     </div>    
 </form>
 
-<?php foreach($articles as $article): ?>
+<?php foreach($articles['affiche'] as $article): ?>
     <div>
         <h2><?= $article->getTitle() ?></h2>
         <p><?= $article->getHead() ?></p>
@@ -22,9 +22,10 @@
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
-        <?php            
-            for($i=1;$i<=$number;$i++){
-                echo  '<li><a href="index.php?p='.$i.'&num='.$limit.'">'.$i.'</a></li>';             
+        <?php
+               
+            for($i=1;$i<=$articles['nombre'];$i++){
+                echo  '<li><a href="index.php?p='.$i.'&num='.$articles{'limit'}.'">'.$i.'</a></li>';             
             }
         ?>        
         <li>

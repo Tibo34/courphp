@@ -56,20 +56,18 @@ abstract class ArticleManager extends DbManager implements ItemInterface
      * @return array|mixed
      * @throws \Exception
      */
-    public static function getAll($offset = null, $limit = null)
+    public static function getAll($offset = 0, $limit = 3)
     {   
         //requete SQL
      
-        $request="SELECT id, title, image, head, content, create_date FROM articles"; 
-       
-        if(isset($offset)&&isset($limit)){
-            $request.=" WHERE id>{$offset} ";
-            $request.=" LIMIT {$limit} "; 
-        }      
-                     
-      
+        $request="SELECT id, title, image, head, content, create_date 
+        FROM articles
+        ORDER BY create_date"; 
+                              
         // Select list of article in database
         $stmt = self::getDb()->prepare($request);
+        
+        
         $stmt->execute();
 
         // Instantiates a collection of article
@@ -80,6 +78,12 @@ abstract class ArticleManager extends DbManager implements ItemInterface
             $articles[] = $article;
         }
 
-        return $articles;
+        $articlesShort=array();
+        for($i=0;$i<$limit;$i++){
+            $articlesShort[$i]=$articles[$offset];
+            $offset++;
+        }
+
+        return ['affiche'=>$articlesShort,'nombre'=>ceil(sizeof($articles)/$limit),'limit'=>$limit];
     }
 }

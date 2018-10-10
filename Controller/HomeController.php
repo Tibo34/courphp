@@ -32,8 +32,7 @@ class HomeController extends LayoutController
         else{
             $offset=0;
         }       
-        $params = [ 'articles' => ArticleManager::getAll($offset,$limit),
-        'number'=> ceil(sizeof(ArticleManager::getAll())/$limit),'limit'=>$limit];
+        $params = [ 'articles' => ArticleManager::getAll($offset,$limit) ];
 
         $this->render('home', $params);
     }
