@@ -4,6 +4,7 @@ namespace Controller;
 
 use View\View;
 
+
 require_once __DIR__ . '/../View/View.php';
 require_once __DIR__ . '/../Controller/Controller.php';
 
@@ -20,11 +21,15 @@ class LayoutController extends Controller
      */
     public function render($childViewName, $childParams = array())
     {
-        // layout params
+       
+        // layout params        
         $params = [
             'content' => View::renderTemplate($childViewName, $childParams),
-            'sidebar' => $childParams['sidebar'] ?? true
-        ];
+            'sidebar' => $childParams['sidebar'] ?? true,
+            'categories'=> $childParams['categories']         
+            ];
+            
+        
 
         // render layout view with child and layout params
         View::render('layout', array_merge($params, $childParams));

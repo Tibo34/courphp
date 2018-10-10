@@ -22,6 +22,7 @@ class View
     public static function render($view, $params)
     {
         // display page content
+        
         echo self::renderTemplate($view, $params);
     }
 
@@ -36,7 +37,7 @@ class View
     public static function renderTemplate($view, $params)
     {
         // generate template variables
-        extract($params);
+        extract($params);        
 
         // start stream
         ob_start();

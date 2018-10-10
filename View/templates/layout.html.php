@@ -20,6 +20,7 @@
     <script src="/public/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 <body>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -90,30 +91,24 @@
                     <h4>Blog Categories</h4>
                     <div class="row">
                         <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
+                           <ul class="list-unstyled">                            
+                            <?php for($i=0;$i<sizeof($categories)/2;$i++) : ?>
+                                <li><a href="index.php?categorie=<?= $categories[$i] ?>"><?= $categories[$i] ?> </a>
                                 </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
+                            <?php endfor; ?>                               
                             </ul>
                         </div>
+                        
                         <div class="col-lg-6">
                             <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
+                            <?php for($i=sizeof($categories)/2;$i<sizeof($categories);$i++) :?>
+                            <li><a href="index.php?categorie=<?= $categories[$i] ?>"><?= $categories[$i] ?> </a>
                                 </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
+                             <?php endfor; ?>                                
                             </ul>
                         </div>
-                    </div>
+                    
+                    </div>                   
                     <!-- /.row -->
                 </div>
                 <!-- Side Widget Well -->

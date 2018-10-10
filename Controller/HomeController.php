@@ -3,9 +3,11 @@
 namespace Controller;
 
 use Model\Manager\ArticleManager;
+use Model\Manager\CategorieManager;
 
 require_once __DIR__ . '/../Controller/LayoutController.php';
 require_once __DIR__ . '/../Model/Manager/ArticleManager.php';
+require_once __DIR__ . '/../Model/Manager/CategorieManager.php';
 
 /**
  * Class HomeController
@@ -31,8 +33,12 @@ class HomeController extends LayoutController
         }
         else{
             $offset=0;
-        }       
-        $params = [ 'articles' => ArticleManager::getAll($offset,$limit) ];
+        }
+
+        $categories=CategorieManager::getAll();
+               
+               
+        $params = [ 'articles' => ArticleManager::getAll($offset,$limit),'categories'=>$categories ];
 
         $this->render('home', $params);
     }
